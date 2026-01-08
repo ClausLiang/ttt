@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=https://work.weixin.qq.com/ct/wcde621e4fc61023e3b6670018e8543e5d52">
-  <title>跳转中</title>
+  <!-- 1. 引入 QRCode.js 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    #qrcode {
+      margin: 20px;
+    }
+
+    /* 可选：为二维码增加内边距 */
+    #qrcode img {
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+  </style>
 </head>
+
 <body>
-  跳转中...
+  <h3>企业微信添加二维码</h3>
+  <!-- 2. 定义一个用于显示二维码的容器 -->
+  <div id="qrcode"></div>
+  <p>请使用微信或企业微信扫码添加。</p>
+
+  <script>
+    // 3. 生成二维码
+    // 参数1：要转换的链接（请替换成你的企业微信链接）
+    var targetUrl = "https://work.weixin.qq.com/ct/wcde621e4fc61023e3b6670018e8543e5d52";
+    // 参数2：容器的DOM元素
+    var container = document.getElementById('qrcode');
+    // 参数3（可选）：配置项，如宽度、高度、颜色等
+    var options = {
+      width: 256,
+      height: 256,
+      colorDark: "#000000", // 二维码颜色
+      colorLight: "#ffffff", // 背景色
+      correctLevel: QRCode.CorrectLevel.H // 容错级别（H为最高）
+    };
+
+    // 调用库的API生成二维码
+    new QRCode(container, {
+      text: targetUrl,
+      width: options.width,
+      height: options.height,
+      colorDark: options.colorDark,
+      colorLight: options.colorLight,
+      correctLevel: options.correctLevel
+    });
+  </script>
 </body>
+
 </html>
